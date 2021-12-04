@@ -12,3 +12,14 @@
 (defn load-text-input
   [file]
   (slurp (io/resource file)))
+
+(defn bin-to-dec
+  [bin-str]
+  (let [msb (dec (count bin-str))]
+    (loop [i 0
+           val 0]
+      (if-not (> i msb)
+        (if-not (zero? (edn/read-string (subs bin-str i (inc i))))
+          (recur (inc i) (+ (Math/pow 2 (- msb i)) val))
+          (recur (inc i) val))
+          val))))
