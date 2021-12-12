@@ -38,7 +38,6 @@
   [floors floor-idx low-point-idx]
   (loop [heights-in-basin #{[floor-idx low-point-idx]}
          basin-internal   #{}]
-    ;; 10 implies corner or edge bound
     (if (empty? heights-in-basin)
       basin-internal
       (let [[current-floor-idx height-idx] (first heights-in-basin)
